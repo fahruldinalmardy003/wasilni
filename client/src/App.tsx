@@ -262,13 +262,13 @@ function App() {
     themeMeta?.setAttribute("content", settings.primaryColor);
     const manifestLink = document.querySelector<HTMLLinkElement>('link[rel="manifest"]');
     if (manifestLink) {
-      const manifest = { name: settings.orgName, short_name: settings.shortName, description: settings.description, start_url: "/", display: "standalone", dir: "rtl", lang: "ar", theme_color: settings.primaryColor, background_color: settings.surfaceColor, icons: [{ src: settings.logoDataUrl || "/logo.svg", sizes: "any", type: settings.logoDataUrl ? "image/png" : "image/svg+xml", purpose: "any maskable" }] };
+      const manifest = { name: settings.orgName, short_name: settings.shortName, description: settings.description, start_url: import.meta.env.BASE_URL, display: "standalone", dir: "rtl", lang: "ar", theme_color: settings.primaryColor, background_color: settings.surfaceColor, icons: [{ src: settings.logoDataUrl || `${import.meta.env.BASE_URL}logo.svg`, sizes: "any", type: settings.logoDataUrl ? "image/png" : "image/svg+xml", purpose: "any maskable" }] };
       const blobUrl = URL.createObjectURL(new Blob([JSON.stringify(manifest)], { type: "application/manifest+json" }));
       manifestLink.href = blobUrl;
       return () => URL.revokeObjectURL(blobUrl);
     }
   }, [settings, darkMode]);
-  useEffect(() => { if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => undefined); }, []);
+  useEffect(() => { if ("serviceWorker" in navigator) navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`).catch(() => undefined); }, []);
 
   const currentTitle = useMemo(() => navItems.find((item) => item.key === view)?.label ?? "الإعدادات", [view]);
   const renderView = () => {
