@@ -1,0 +1,12 @@
+{
+  "name": "جمعية وصلني",
+  "short_name": "وصلني",
+  "description": "نظام إدارة جمعية وصلني",
+  "start_url": "/",
+  "display": "standalone",
+  "dir": "rtl",
+  "lang": "ar",
+  "theme_color": "#0f766e",
+  "background_color": "#f6f8f7",
+  "icons": [{ "src": "/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
